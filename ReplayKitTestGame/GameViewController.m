@@ -8,6 +8,10 @@
 
 #import "GameViewController.h"
 #import <OpenGLES/ES2/glext.h>
+#import "RPLiveVM.h"
+#import "ReactiveCocoa.h"
+
+@import WebKit;
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -87,6 +91,15 @@ GLfloat gCubeVertexData[216] =
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
+
+@property (strong, nonatomic) RPLiveVM *liveVM;
+
+@property (nonatomic, weak) UIView *cameraPreview;
+@property (weak, nonatomic) IBOutlet UIButton *liveButton;
+@property (weak, nonatomic) IBOutlet UIButton *livePauseButton;
+
+@property (nonatomic, strong) NSURL *chatURL;
+@property (nonatomic, strong) WKWebView* chatView;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -186,6 +199,140 @@ GLfloat gCubeVertexData[216] =
     if (_program) {
         glDeleteProgram(_program);
         _program = 0;
+    }
+}
+
+#pragma mark - Replay Kit Live
+- (void)setupLiveVM {
+    _liveVM = [[RPLiveVM alloc] initWithViewController:self];
+    _liveVM.microphoneEnabled = YES;
+    _liveVM.cameraEnabled = YES;
+    @weakify(self);
+    [[[self.liveVM rac_signalForSelector:@selector(onStarted)] deliverOnMainThread] subscribeNext:^(id x) {
+        @strongify(self);
+        self.liveButton.enabled = YES;
+        [self.liveButton setImage:[UIImage imageNamed:@"living_on"] forState:UIControlStateNormal];
+        self.livePauseButton.hidden = NO;
+        [self.livePauseButton setImage:[UIImage imageNamed:@"pause_live"] forState:UIControlStateNormal];
+        
+        UIView* cameraView = [self.liveVM cameraPreview];
+        // 防一手
+        if (self.cameraPreview.superview) {
+            [self.cameraPreview removeFromSuperview];
+        }
+        
+        NSLog(@"Camera view frame:%@", NSStringFromCGRect(cameraView.frame));
+        
+        self.cameraPreview = cameraView;
+        
+        if(cameraView)
+        {
+            // If the camera is enabled, create the camera preview and add it to the game's UIView
+            cameraView.frame = CGRectMake(0, 0, 200, 200);
+            [self.view addSubview:cameraView];
+            {
+                // Add a gesture recognizer so the user can drag the camera around the screen
+                UIPanGestureRecognizer *pgr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didCameraViewPanned:)];
+                pgr.minimumNumberOfTouches = 1;
+                pgr.maximumNumberOfTouches = 1;
+                [cameraView addGestureRecognizer:pgr];
+            }
+            {
+                UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didCameraViewTapped:)];
+                [cameraView addGestureRecognizer:tgr];
+            }
+        }
+    }];
+    
+    [[[self.liveVM rac_signalForSelector:@selector(onStopped:)] deliverOnMainThread] subscribeNext:^(id x) {
+        @strongify(self);
+        self.liveButton.enabled = YES;
+        self.livePauseButton.hidden = YES;
+        
+        self.chatURL = nil;
+        [self didCameraViewTapped:nil];
+
+        [self.liveButton setImage:[UIImage imageNamed:@"living_off"] forState:UIControlStateNormal];
+        [self.cameraPreview removeFromSuperview];
+        self.cameraPreview = nil;
+        
+    }];
+    
+    RAC(self, chatURL) = RACObserve(self.liveVM, chatURL);
+    
+    [[RACObserve(self.liveVM, paused) deliverOnMainThread] subscribeNext:^(id x) {
+        @strongify(self);
+        
+        BOOL paused = self.liveVM.paused;
+        if (paused) {
+            NSLog(@"Live paused");
+            [self.livePauseButton setImage:[UIImage imageNamed:@"resume_live"] forState:UIControlStateNormal];
+        }
+        else {
+            NSLog(@"Live resumed");
+            [self.livePauseButton setImage:[UIImage imageNamed:@"pause_live"] forState:UIControlStateNormal];
+        }
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resumeLiving)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:[UIApplication sharedApplication]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resumeLiving)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:[UIApplication sharedApplication]];
+    
+}
+
+- (void) resumeLiving {
+    [_liveVM resume];
+}
+
+- (void)didCameraViewPanned:(UIPanGestureRecognizer*) sender
+{
+    // Move the Camera view around by dragging
+    CGPoint translation = [sender translationInView:self.view];
+    {
+        CGRect recognizerFrame = sender.view.frame;
+        recognizerFrame.origin.x += translation.x;
+        recognizerFrame.origin.y += translation.y;
+        
+        sender.view.frame = recognizerFrame;
+    }
+    if(self.chatView)
+    {
+        CGRect recognizerFrame = self.chatView.frame;
+        recognizerFrame.origin.x += translation.x;
+        recognizerFrame.origin.y += translation.y;
+        
+        self.chatView.frame = recognizerFrame;
+    }
+    
+    [sender setTranslation:CGPointMake(0, 0) inView:self.view];
+}
+
+- (void)didCameraViewTapped:(UITapGestureRecognizer*) sender
+{
+    // Load the chat view if we have a chat URL
+    if(!self.chatView && self.chatURL)
+    {
+        CGSize parentSize = self.view.frame.size;
+        CGFloat ypos = CGRectGetMaxY(self.cameraPreview.frame);
+        self.chatView = [[WKWebView alloc] initWithFrame:CGRectMake(self.cameraPreview.frame.origin.x,
+                                                                    ypos,
+                                                                    300,
+                                                                    parentSize.height - ypos)];
+        NSURLRequest* request = [NSURLRequest requestWithURL:self.chatURL];
+        [self.chatView loadRequest:request];
+        [self.chatView setBackgroundColor:[UIColor clearColor]];
+        [self.chatView setOpaque:NO];
+        [self.view addSubview:self.chatView];
+    }
+    else if(self.chatView)
+    {
+        [self.chatView removeFromSuperview];
+        self.chatView = nil;
     }
 }
 

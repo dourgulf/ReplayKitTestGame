@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		944DFA4D3C83E8A449385B77 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E067AC340B3AA54AE216B04 /* libPods.a */; };
 		D67E744A1DB77E7200FB6398 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D67E74491DB77E7200FB6398 /* main.m */; };
 		D67E744D1DB77E7200FB6398 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D67E744C1DB77E7200FB6398 /* AppDelegate.m */; };
 		D67E744F1DB77E7200FB6398 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D67E744E1DB77E7200FB6398 /* Shader.fsh */; };
@@ -15,9 +16,16 @@
 		D67E74571DB77E7200FB6398 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D67E74551DB77E7200FB6398 /* Main.storyboard */; };
 		D67E74591DB77E7200FB6398 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D67E74581DB77E7200FB6398 /* Assets.xcassets */; };
 		D67E745C1DB77E7200FB6398 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D67E745A1DB77E7200FB6398 /* LaunchScreen.storyboard */; };
+		D67E74711DB77F4B00FB6398 /* JCDeallocMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = D67E74691DB77F4B00FB6398 /* JCDeallocMonitor.m */; };
+		D67E74721DB77F4B00FB6398 /* YYTextWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D67E746B1DB77F4B00FB6398 /* YYTextWeakProxy.m */; };
+		D67E74731DB77F4B00FB6398 /* RPLiveCtrlView.m in Sources */ = {isa = PBXBuildFile; fileRef = D67E746E1DB77F4B00FB6398 /* RPLiveCtrlView.m */; };
+		D67E74741DB77F4B00FB6398 /* RPLiveVM.m in Sources */ = {isa = PBXBuildFile; fileRef = D67E74701DB77F4B00FB6398 /* RPLiveVM.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B996BB8B7AFD1912FDBE412 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2E067AC340B3AA54AE216B04 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C709783012D18E6436C3E1A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D67E74451DB77E7200FB6398 /* ReplayKitTestGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReplayKitTestGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D67E74491DB77E7200FB6398 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D67E744B1DB77E7200FB6398 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -30,6 +38,14 @@
 		D67E74581DB77E7200FB6398 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D67E745B1DB77E7200FB6398 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D67E745D1DB77E7200FB6398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D67E74681DB77F4B00FB6398 /* JCDeallocMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDeallocMonitor.h; sourceTree = "<group>"; };
+		D67E74691DB77F4B00FB6398 /* JCDeallocMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDeallocMonitor.m; sourceTree = "<group>"; };
+		D67E746A1DB77F4B00FB6398 /* YYTextWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextWeakProxy.h; sourceTree = "<group>"; };
+		D67E746B1DB77F4B00FB6398 /* YYTextWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextWeakProxy.m; sourceTree = "<group>"; };
+		D67E746D1DB77F4B00FB6398 /* RPLiveCtrlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPLiveCtrlView.h; sourceTree = "<group>"; };
+		D67E746E1DB77F4B00FB6398 /* RPLiveCtrlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPLiveCtrlView.m; sourceTree = "<group>"; };
+		D67E746F1DB77F4B00FB6398 /* RPLiveVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPLiveVM.h; sourceTree = "<group>"; };
+		D67E74701DB77F4B00FB6398 /* RPLiveVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPLiveVM.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +53,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				944DFA4D3C83E8A449385B77 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38C014DD04A6ABDB902E21D2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E067AC340B3AA54AE216B04 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B5E8F7E85085B8A628A853D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6C709783012D18E6436C3E1A /* Pods.debug.xcconfig */,
+				2B996BB8B7AFD1912FDBE412 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D67E743C1DB77E7200FB6398 = {
 			isa = PBXGroup;
 			children = (
 				D67E74471DB77E7200FB6398 /* ReplayKitTestGame */,
 				D67E74461DB77E7200FB6398 /* Products */,
+				4B5E8F7E85085B8A628A853D /* Pods */,
+				38C014DD04A6ABDB902E21D2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +98,8 @@
 		D67E74471DB77E7200FB6398 /* ReplayKitTestGame */ = {
 			isa = PBXGroup;
 			children = (
+				D67E74671DB77F4B00FB6398 /* MemoryLeak */,
+				D67E746C1DB77F4B00FB6398 /* RPLive */,
 				D67E744B1DB77E7200FB6398 /* AppDelegate.h */,
 				D67E744C1DB77E7200FB6398 /* AppDelegate.m */,
 				D67E744E1DB77E7200FB6398 /* Shader.fsh */,
@@ -85,6 +123,28 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D67E74671DB77F4B00FB6398 /* MemoryLeak */ = {
+			isa = PBXGroup;
+			children = (
+				D67E74681DB77F4B00FB6398 /* JCDeallocMonitor.h */,
+				D67E74691DB77F4B00FB6398 /* JCDeallocMonitor.m */,
+				D67E746A1DB77F4B00FB6398 /* YYTextWeakProxy.h */,
+				D67E746B1DB77F4B00FB6398 /* YYTextWeakProxy.m */,
+			);
+			path = MemoryLeak;
+			sourceTree = "<group>";
+		};
+		D67E746C1DB77F4B00FB6398 /* RPLive */ = {
+			isa = PBXGroup;
+			children = (
+				D67E746D1DB77F4B00FB6398 /* RPLiveCtrlView.h */,
+				D67E746E1DB77F4B00FB6398 /* RPLiveCtrlView.m */,
+				D67E746F1DB77F4B00FB6398 /* RPLiveVM.h */,
+				D67E74701DB77F4B00FB6398 /* RPLiveVM.m */,
+			);
+			path = RPLive;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -92,9 +152,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D67E74601DB77E7200FB6398 /* Build configuration list for PBXNativeTarget "ReplayKitTestGame" */;
 			buildPhases = (
+				79D6C88FB5A15D54EB24E2FE /* Check Pods Manifest.lock */,
 				D67E74411DB77E7200FB6398 /* Sources */,
 				D67E74421DB77E7200FB6398 /* Frameworks */,
 				D67E74431DB77E7200FB6398 /* Resources */,
+				8440F3242535E24022E2E309 /* Embed Pods Frameworks */,
+				B5E1012D9FEA4A807F002A39 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -116,7 +179,8 @@
 				TargetAttributes = {
 					D67E74441DB77E7200FB6398 = {
 						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 9CSZNY8EBK;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -153,14 +217,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		79D6C88FB5A15D54EB24E2FE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8440F3242535E24022E2E309 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5E1012D9FEA4A807F002A39 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D67E74411DB77E7200FB6398 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D67E744D1DB77E7200FB6398 /* AppDelegate.m in Sources */,
+				D67E74731DB77F4B00FB6398 /* RPLiveCtrlView.m in Sources */,
+				D67E74741DB77F4B00FB6398 /* RPLiveVM.m in Sources */,
 				D67E74541DB77E7200FB6398 /* GameViewController.m in Sources */,
+				D67E74711DB77F4B00FB6398 /* JCDeallocMonitor.m in Sources */,
 				D67E744A1DB77E7200FB6398 /* main.m in Sources */,
+				D67E74721DB77F4B00FB6398 /* YYTextWeakProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +320,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -251,6 +368,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -276,23 +394,33 @@
 		};
 		D67E74611DB77E7200FB6398 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C709783012D18E6436C3E1A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9CSZNY8EBK;
 				INFOPLIST_FILE = ReplayKitTestGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tv.inhand.ReplayKitTestGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4951c91f-788f-4740-aa5b-60a3fcae505b";
+				PROVISIONING_PROFILE_SPECIFIER = weile_dev_all;
 			};
 			name = Debug;
 		};
 		D67E74621DB77E7200FB6398 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B996BB8B7AFD1912FDBE412 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9CSZNY8EBK;
 				INFOPLIST_FILE = ReplayKitTestGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tv.inhand.ReplayKitTestGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4951c91f-788f-4740-aa5b-60a3fcae505b";
+				PROVISIONING_PROFILE_SPECIFIER = weile_dev_all;
 			};
 			name = Release;
 		};
@@ -315,6 +443,7 @@
 				D67E74621DB77E7200FB6398 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
