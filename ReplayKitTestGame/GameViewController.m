@@ -127,6 +127,7 @@ GLfloat gCubeVertexData[216] =
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     [self setupGL];
+    [self setupLiveVM];
 }
 
 - (void)dealloc
@@ -136,6 +137,8 @@ GLfloat gCubeVertexData[216] =
     if ([EAGLContext currentContext] == self.context) {
         [EAGLContext setCurrentContext:nil];
     }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -207,7 +210,29 @@ GLfloat gCubeVertexData[216] =
     _liveVM = [[RPLiveVM alloc] initWithViewController:self];
     _liveVM.microphoneEnabled = YES;
     _liveVM.cameraEnabled = YES;
+    
     @weakify(self);
+    [[self.liveButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self);
+        if (!self.liveVM.isLiving) {
+            [self.liveVM start];
+            self.liveButton.enabled = NO;
+        }
+        else {
+            [self.liveVM stop];
+        }
+    }];
+    
+    [[self.livePauseButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self);
+        if (self.liveVM.paused) {
+            [self.liveVM resume];
+        }
+        else {
+            [self.liveVM pause];
+        }
+    }];
+    
     [[[self.liveVM rac_signalForSelector:@selector(onStarted)] deliverOnMainThread] subscribeNext:^(id x) {
         @strongify(self);
         self.liveButton.enabled = YES;
@@ -288,6 +313,7 @@ GLfloat gCubeVertexData[216] =
 - (void) resumeLiving {
     [_liveVM resume];
 }
+
 
 - (void)didCameraViewPanned:(UIPanGestureRecognizer*) sender
 {
