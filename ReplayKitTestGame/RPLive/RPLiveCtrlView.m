@@ -30,13 +30,19 @@
 {
     self = [super init];
     if (self) {
-        [self setupViews];
+        [self commonSetup];
     }
     return self;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [self commonSetup];
+}
+
+- (void)commonSetup {
+    _menuDirection = RPMenuRightDirection;
+    _menuOpen = NO;
     [self setupViews];
 }
 
@@ -107,11 +113,11 @@
     
     [[self.liveButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self);
-        if (!self.liveVM.isLiving) {
-            [self.liveButton setImage:[ImageLoader imageNamed:@"live_on"] forState:UIControlStateNormal];
-            [self.liveVM start];
-        }
-        else {
+//        if (!self.liveVM.isLiving) {
+//            [self.liveButton setImage:[ImageLoader imageNamed:@"live_on"] forState:UIControlStateNormal];
+//            [self.liveVM start];
+//        }
+//        else {
             [self.stopButton setImage:[ImageLoader imageNamed:@"stop"] forState:UIControlStateNormal];
             if (self.menuOpen) {
                 [self setupCloseMenu];
@@ -119,7 +125,7 @@
             else {
                 [self setupOpenMenu];
             }
-        }
+//        }
     }];
     
     [[RACObserve(self.liveVM, paused) deliverOnMainThread] subscribeNext:^(id x) {
@@ -202,12 +208,43 @@
     }
     [self addSubview:firstView];
     [firstView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self);
-        make.bottom.equalTo(self);
-        make.left.equalTo(self);
-        make.width.equalTo(firstView.mas_height);
-        if (menus.count == 1) {
+        if (self.menuDirection == RPMenuRightDirection ||
+            self.menuDirection == RPMenuLeftDirection)
+        {
+            make.top.equalTo(self);
+            make.bottom.equalTo(self);
+            make.width.equalTo(firstView.mas_height);
+            if (self.menuDirection == RPMenuRightDirection) {
+                make.left.equalTo(self);
+                if (menus.count == 1) {
+                    make.right.equalTo(self);
+                }
+            }
+            else {
+                make.right.equalTo(self);
+                if (menus.count == 1) {
+                    make.left.equalTo(self);
+                }
+            }
+        }
+        else if (self.menuDirection == RPMenuUpDirection ||
+                 self.menuDirection == RPMenuDownDirection)
+        {
+            make.left.equalTo(self);
             make.right.equalTo(self);
+            make.height.equalTo(firstView.mas_width);
+            if (self.menuDirection == RPMenuUpDirection) {
+                make.bottom.equalTo(self);
+                if (menus.count == 1) {
+                    make.top.equalTo(self);
+                }
+            }
+            else {
+                make.top.equalTo(self);
+                if (menus.count == 1) {
+                    make.bottom.equalTo(self);
+                }
+            }
         }
     }];
     UIView *lastView = menus.lastObject;
@@ -220,20 +257,67 @@
         UIView *nextView = menus[i];
         [self addSubview:nextView];
         [nextView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self);
-            make.bottom.equalTo(self);
-            make.left.equalTo(prevView.mas_right);
-            make.width.equalTo(nextView.mas_height);
+            if (self.menuDirection == RPMenuRightDirection ||
+                self.menuDirection == RPMenuLeftDirection)
+            {
+                make.top.equalTo(self);
+                make.bottom.equalTo(self);
+                make.width.equalTo(nextView.mas_height);
+                if (self.menuDirection == RPMenuRightDirection) {
+                    make.left.equalTo(prevView.mas_right);
+                }
+                else {
+                    make.right.equalTo(prevView.mas_left);
+                }
+            }
+            else if (self.menuDirection == RPMenuUpDirection ||
+                     self.menuDirection == RPMenuDownDirection)
+            {
+                make.left.equalTo(self);
+                make.right.equalTo(self);
+                make.height.equalTo(nextView.mas_width);
+                if (self.menuDirection == RPMenuUpDirection) {
+                    make.bottom.equalTo(prevView.mas_top);
+                }
+                else {
+                    make.top.equalTo(prevView.mas_bottom);
+                }
+            }
         }];
         prevView = nextView;
     }
     [self addSubview:lastView];
     [lastView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self);
-        make.bottom.equalTo(self);
-        make.left.equalTo(prevView.mas_right);
-        make.width.equalTo(lastView.mas_height);
-        make.right.equalTo(self);
+        if (self.menuDirection == RPMenuRightDirection ||
+            self.menuDirection == RPMenuLeftDirection)
+        {
+            make.top.equalTo(self);
+            make.bottom.equalTo(self);
+            make.width.equalTo(lastView.mas_height);
+            if (self.menuDirection == RPMenuRightDirection) {
+                make.left.equalTo(prevView.mas_right);
+                make.right.equalTo(self);
+            }
+            else {
+                make.right.equalTo(prevView.mas_left);
+                make.left.equalTo(self);
+            }
+        }
+        else if (self.menuDirection == RPMenuUpDirection ||
+                 self.menuDirection == RPMenuDownDirection)
+        {
+            make.left.equalTo(self);
+            make.right.equalTo(self);
+            make.height.equalTo(lastView.mas_width);
+            if (self.menuDirection == RPMenuUpDirection) {
+                make.bottom.equalTo(prevView.mas_top);
+                make.top.equalTo(self);
+            }
+            else {
+                make.top.equalTo(prevView.mas_bottom);
+                make.bottom.equalTo(self);
+            }
+        }
     }];
 }
 

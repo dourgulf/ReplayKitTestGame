@@ -206,6 +206,7 @@
     }
 }
 
+// 一些私有协议
 // updateServiceInfo的格式是一个固定的字典
 // 通过RPInfo_EventKey得到通知的类型
 // 通过RPInfo_EventValue得到通知类型对应的值
