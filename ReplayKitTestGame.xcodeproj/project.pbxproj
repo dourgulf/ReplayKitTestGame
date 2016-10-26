@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		944DFA4D3C83E8A449385B77 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E067AC340B3AA54AE216B04 /* libPods.a */; };
+		D08748F61DC08234006C407C /* RPLive.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D08748F51DC08234006C407C /* RPLive.xcassets */; };
+		D08748FB1DC08926006C407C /* ImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D08748FA1DC08926006C407C /* ImageLoader.m */; };
 		D67E744A1DB77E7200FB6398 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D67E74491DB77E7200FB6398 /* main.m */; };
 		D67E744D1DB77E7200FB6398 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D67E744C1DB77E7200FB6398 /* AppDelegate.m */; };
 		D67E744F1DB77E7200FB6398 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D67E744E1DB77E7200FB6398 /* Shader.fsh */; };
@@ -26,6 +28,9 @@
 		2B996BB8B7AFD1912FDBE412 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2E067AC340B3AA54AE216B04 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C709783012D18E6436C3E1A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		D08748F51DC08234006C407C /* RPLive.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = RPLive.xcassets; sourceTree = "<group>"; };
+		D08748F91DC08926006C407C /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
+		D08748FA1DC08926006C407C /* ImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLoader.m; sourceTree = "<group>"; };
 		D67E74451DB77E7200FB6398 /* ReplayKitTestGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReplayKitTestGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D67E74491DB77E7200FB6398 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D67E744B1DB77E7200FB6398 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,6 +82,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D08748F81DC08914006C407C /* ImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				D08748F91DC08926006C407C /* ImageLoader.h */,
+				D08748FA1DC08926006C407C /* ImageLoader.m */,
+			);
+			path = ImageLoader;
+			sourceTree = "<group>";
+		};
 		D67E743C1DB77E7200FB6398 = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +112,7 @@
 		D67E74471DB77E7200FB6398 /* ReplayKitTestGame */ = {
 			isa = PBXGroup;
 			children = (
+				D08748F81DC08914006C407C /* ImageLoader */,
 				D67E74671DB77F4B00FB6398 /* MemoryLeak */,
 				D67E746C1DB77F4B00FB6398 /* RPLive */,
 				D67E744B1DB77E7200FB6398 /* AppDelegate.h */,
@@ -141,6 +156,7 @@
 				D67E746E1DB77F4B00FB6398 /* RPLiveCtrlView.m */,
 				D67E746F1DB77F4B00FB6398 /* RPLiveVM.h */,
 				D67E74701DB77F4B00FB6398 /* RPLiveVM.m */,
+				D08748F51DC08234006C407C /* RPLive.xcassets */,
 			);
 			path = RPLive;
 			sourceTree = "<group>";
@@ -212,6 +228,7 @@
 				D67E74591DB77E7200FB6398 /* Assets.xcassets in Resources */,
 				D67E745C1DB77E7200FB6398 /* LaunchScreen.storyboard in Resources */,
 				D67E744F1DB77E7200FB6398 /* Shader.fsh in Resources */,
+				D08748F61DC08234006C407C /* RPLive.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +289,7 @@
 			files = (
 				D67E744D1DB77E7200FB6398 /* AppDelegate.m in Sources */,
 				D67E74731DB77F4B00FB6398 /* RPLiveCtrlView.m in Sources */,
+				D08748FB1DC08926006C407C /* ImageLoader.m in Sources */,
 				D67E74741DB77F4B00FB6398 /* RPLiveVM.m in Sources */,
 				D67E74541DB77E7200FB6398 /* GameViewController.m in Sources */,
 				D67E74711DB77F4B00FB6398 /* JCDeallocMonitor.m in Sources */,

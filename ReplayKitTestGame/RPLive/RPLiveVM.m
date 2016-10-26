@@ -25,6 +25,7 @@
 @property (strong, nonatomic) RPBroadcastController *strongBC;  // 暂停的时候强引用
 @property (copy, nonatomic) NSURL *chatURL;
 @property (assign, nonatomic, getter=isPaused) BOOL paused;
+@property (assign, nonatomic, getter=isLiving) BOOL living;
 
 @property (weak, nonatomic) NSTimer *startCheckTimer;
 @end
@@ -37,15 +38,31 @@
     if (self) {
         _ownerViewController = vc;
         [JCDeallocMonitor addMonitorToObj:self];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(checkLivingStatus)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:[UIApplication sharedApplication]];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(checkLivingStatus)
+                                                     name:UIApplicationWillEnterForegroundNotification
+                                                   object:[UIApplication sharedApplication]];
+        
     }
     return self;
 }
 
--(void)setCameraEnabled:(BOOL)enable {
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)setCameraEnabled:(BOOL)enable {
     if (enable) {
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
             if (granted) {
+                [self willChangeValueForKey:@"cameraEnabled"];
                 [RPScreenRecorder sharedRecorder].cameraEnabled = YES;
+                [self didChangeValueForKey:@"cameraEnabled"];
             }
             else {
                 NSLog(@"User not allow camera access");
@@ -57,7 +74,15 @@
     }
 }
 
--(void)setMicrophoneEnabled:(BOOL)enable {
+- (BOOL)isCameraEnabled {
+    return [RPScreenRecorder sharedRecorder].isCameraEnabled;
+}
+
+- (BOOL)isMicrophoneEnabled {
+    return [RPScreenRecorder sharedRecorder].isMicrophoneEnabled;
+}
+
+- (void)setMicrophoneEnabled:(BOOL)enable {
     if (enable) {
         [[AVAudioSession sharedInstance] requestRecordPermission: ^(BOOL granted){
             if (granted) {
@@ -101,8 +126,7 @@
 - (void)broadcastActivityViewController:(RPBroadcastActivityViewController *)broadcastActivityViewController didFinishWithBroadcastController:(nullable RPBroadcastController *)broadcastController error:(nullable NSError *)error
 {
     @WeakObj(self)
-    [self.ownerViewController dismissViewControllerAnimated:broadcastActivityViewController completion:^{
-        
+    [broadcastActivityViewController dismissViewControllerAnimated:YES completion:^{
         @StrongObj(self)
         if (!error) {
             // 如果之前竟然还有一个RPBroadcastController, 先解除上一个对象的代理
@@ -121,7 +145,7 @@
 }
 
 - (void)doStartBroadcast {
-    NSLog(@"Start broadcast");
+    NSLog(@"Start broadcast:%@", self.broadcastController);
     self.broadcastController.delegate = self;
     @WeakObj(self)
     [self.broadcastController startBroadcastWithHandler:^(NSError * _Nullable error) {
@@ -144,8 +168,6 @@
         // auto retry
         NSLog(@"Start timeout, auto retry...");
         [self start];
-//        NSError *error = [NSError errorWithDomain:@"StartTimeout" code:CheckStartTimeout userInfo:nil];
-//        [self onStopped:error];
     }];
 }
 
@@ -164,9 +186,24 @@
     return [RPScreenRecorder sharedRecorder].cameraPreviewView;
 }
 
+- (NSURL *)broadcastURL {
+    return self.broadcastController.broadcastURL;
+}
+
 - (void)broadcastController:(RPBroadcastController *)broadcastController didFinishWithError:(NSError * __nullable)error{
     NSLog(@"broadcastController:didFinishWithError:%@", error);
     [self onStopped:error];
+}
+
+- (void)checkLivingStatus {
+    BOOL isLiving = self.broadcastController.isBroadcasting;
+    if (isLiving != self.living) {
+        self.living = isLiving;
+    }
+    BOOL isPaused = self.broadcastController.paused;
+    if (isPaused != self.paused) {
+        self.paused = isPaused;
+    }
 }
 
 // updateServiceInfo的格式是一个固定的字典
@@ -209,10 +246,11 @@
 
 - (void)onStarted {
     NSLog(@"Live started:%@", self.broadcastController.broadcastURL);
-}
-
-- (NSURL *)broadcastURL {
-    return self.broadcastController.broadcastURL;
+    
+    if ([self.delegate respondsToSelector:@selector(rpliveStarted)]) {
+        [self.delegate rpliveStarted];
+    }
+    self.living = YES;
 }
 
 - (void)onStopped:(NSError *)error {
@@ -222,6 +260,11 @@
     else {
         NSLog(@"Live stopped normally");
     }
+    
+    if ([self.delegate respondsToSelector:@selector(rpliveStoppedWithError:)]) {
+        [self.delegate rpliveStoppedWithError:error];
+    }
+    self.living = NO;
 }
 
 - (void)pause {
@@ -239,6 +282,14 @@
     
     [self.broadcastController pauseBroadcast];
     self.paused = self.broadcastController.paused;
+}
+
+-(void)setPaused:(BOOL)paused {
+    _paused = paused;
+    
+    if ([self.delegate respondsToSelector:@selector(rplivePaused)]) {
+        [self.delegate rplivePaused];
+    }
 }
 
 - (void)resume {
@@ -271,6 +322,7 @@
         }
         else {
             NSLog(@"finishBroadcastWithHandler error:%@", error);
+            [self onStopped:error];
         }
         self.broadcastController = nil;
     }];

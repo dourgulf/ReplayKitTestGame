@@ -9,6 +9,8 @@
 #import "GameViewController.h"
 #import <OpenGLES/ES2/glext.h>
 #import "RPLiveVM.h"
+#import "RPLiveCtrlView.h"
+
 #import "ReactiveCocoa.h"
 
 @import WebKit;
@@ -93,13 +95,13 @@ GLfloat gCubeVertexData[216] =
 @property (strong, nonatomic) GLKBaseEffect *effect;
 
 @property (strong, nonatomic) RPLiveVM *liveVM;
+@property (weak, nonatomic) IBOutlet RPLiveCtrlView *liveVMController;
+
 
 @property (nonatomic, weak) UIView *cameraPreview;
-@property (weak, nonatomic) IBOutlet UIButton *liveButton;
-@property (weak, nonatomic) IBOutlet UIButton *livePauseButton;
 
-@property (nonatomic, strong) NSURL *chatURL;
-@property (nonatomic, strong) WKWebView* chatView;
+@property (nonatomic, copy) NSURL *chatURL;
+@property (nonatomic, strong) WKWebView *chatView;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -115,7 +117,6 @@ GLfloat gCubeVertexData[216] =
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
 
     if (!self.context) {
@@ -130,8 +131,17 @@ GLfloat gCubeVertexData[216] =
     [self setupLiveVM];
 }
 
-- (void)dealloc
-{    
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+}
+
+- (void)dealloc {
     [self tearDownGL];
     
     if ([EAGLContext currentContext] == self.context) {
@@ -208,114 +218,83 @@ GLfloat gCubeVertexData[216] =
 #pragma mark - Replay Kit Live
 - (void)setupLiveVM {
     _liveVM = [[RPLiveVM alloc] initWithViewController:self];
+    
+    [self.liveVMController bindVM:_liveVM];
     _liveVM.microphoneEnabled = YES;
     _liveVM.cameraEnabled = YES;
-    
-    @weakify(self);
-    [[self.liveButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        @strongify(self);
-        if (!self.liveVM.isLiving) {
-            [self.liveVM start];
-            self.liveButton.enabled = NO;
-        }
-        else {
-            [self.liveVM stop];
-        }
-    }];
-    
-    [[self.livePauseButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        @strongify(self);
-        if (self.liveVM.paused) {
-            [self.liveVM resume];
-        }
-        else {
-            [self.liveVM pause];
-        }
-    }];
-    
-    [[[self.liveVM rac_signalForSelector:@selector(onStarted)] deliverOnMainThread] subscribeNext:^(id x) {
-        @strongify(self);
-        self.liveButton.enabled = YES;
-        [self.liveButton setImage:[UIImage imageNamed:@"living_on"] forState:UIControlStateNormal];
-        self.livePauseButton.hidden = NO;
-        [self.livePauseButton setImage:[UIImage imageNamed:@"pause_live"] forState:UIControlStateNormal];
-        
-        UIView* cameraView = [self.liveVM cameraPreview];
-        // 防一手
-        if (self.cameraPreview.superview) {
-            [self.cameraPreview removeFromSuperview];
-        }
-        
-        NSLog(@"Camera view frame:%@", NSStringFromCGRect(cameraView.frame));
-        
-        self.cameraPreview = cameraView;
-        
-        if(cameraView)
-        {
-            // If the camera is enabled, create the camera preview and add it to the game's UIView
-            cameraView.frame = CGRectMake(0, 0, 200, 200);
-            [self.view addSubview:cameraView];
-            {
-                // Add a gesture recognizer so the user can drag the camera around the screen
-                UIPanGestureRecognizer *pgr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didCameraViewPanned:)];
-                pgr.minimumNumberOfTouches = 1;
-                pgr.maximumNumberOfTouches = 1;
-                [cameraView addGestureRecognizer:pgr];
-            }
-            {
-                UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didCameraViewTapped:)];
-                [cameraView addGestureRecognizer:tgr];
-            }
-        }
-    }];
-    
-    [[[self.liveVM rac_signalForSelector:@selector(onStopped:)] deliverOnMainThread] subscribeNext:^(id x) {
-        @strongify(self);
-        self.liveButton.enabled = YES;
-        self.livePauseButton.hidden = YES;
-        
-        self.chatURL = nil;
-        [self didCameraViewTapped:nil];
 
-        [self.liveButton setImage:[UIImage imageNamed:@"living_off"] forState:UIControlStateNormal];
-        [self.cameraPreview removeFromSuperview];
-        self.cameraPreview = nil;
-        
+    @weakify(self);
+    [[RACObserve(self.liveVM, living) deliverOnMainThread] subscribeNext:^(id x) {
+        @strongify(self);
+        if (self.liveVM.isLiving) {
+            UIView* cameraView = [self.liveVM cameraPreview];
+            if (self.cameraPreview != cameraView) {
+                // 防一手
+                if (self.cameraPreview.superview) {
+                    [self.cameraPreview removeFromSuperview];
+                }
+                
+                NSLog(@"Camera view frame:%@", NSStringFromCGRect(cameraView.frame));
+                
+                self.cameraPreview = cameraView;
+                
+                if(cameraView)
+                {
+                    // If the camera is enabled, create the camera preview and add it to the game's UIView
+                    cameraView.frame = CGRectMake(0, 0, 200, 200);
+                    [self.view addSubview:cameraView];
+                    {
+                        // Add a gesture recognizer so the user can drag the camera around the screen
+                        UIPanGestureRecognizer *pgr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didCameraViewPanned:)];
+                        pgr.minimumNumberOfTouches = 1;
+                        pgr.maximumNumberOfTouches = 1;
+                        [cameraView addGestureRecognizer:pgr];
+                    }
+                    {
+                        UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didCameraViewTapped:)];
+                        [cameraView addGestureRecognizer:tgr];
+                    }
+                }
+            }
+        }
+        else {
+            @strongify(self);
+            self.chatURL = nil;
+            [self didCameraViewTapped:nil];
+            
+            [self.cameraPreview removeFromSuperview];
+            self.cameraPreview = nil;
+        }
     }];
     
     RAC(self, chatURL) = RACObserve(self.liveVM, chatURL);
     
-    [[RACObserve(self.liveVM, paused) deliverOnMainThread] subscribeNext:^(id x) {
-        @strongify(self);
-        
-        BOOL paused = self.liveVM.paused;
-        if (paused) {
-            NSLog(@"Live paused");
-            [self.livePauseButton setImage:[UIImage imageNamed:@"resume_live"] forState:UIControlStateNormal];
-        }
-        else {
-            NSLog(@"Live resumed");
-            [self.livePauseButton setImage:[UIImage imageNamed:@"pause_live"] forState:UIControlStateNormal];
-        }
-    }];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resumeLiving)
+                                             selector:@selector(askForResumeLiving)
                                                  name:UIApplicationDidBecomeActiveNotification
                                                object:[UIApplication sharedApplication]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resumeLiving)
-                                                 name:UIApplicationWillEnterForegroundNotification
-                                               object:[UIApplication sharedApplication]];
-    
 }
 
-- (void) resumeLiving {
-    [_liveVM resume];
+- (void) askForResumeLiving {
+    if (self.liveVM.isLiving && self.liveVM.isPaused) {
+        UIAlertController *ask = [[UIAlertController alloc] init];
+        ask.title = @"恢复直播";
+        ask.message = @"直播已经暂停了，是否立刻恢复直播？";
+        
+        UIAlertAction *yes = [UIAlertAction actionWithTitle:@"恢复" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.liveVM resume];
+        }];
+        UIAlertAction *no = [UIAlertAction actionWithTitle:@"不恢复" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [ask dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [ask addAction:yes];
+        [ask addAction:no];
+        [self presentViewController:ask animated:YES completion:nil];
+    }
 }
 
 
-- (void)didCameraViewPanned:(UIPanGestureRecognizer*) sender
+- (void)didCameraViewPanned:(UIPanGestureRecognizer*)sender
 {
     // Move the Camera view around by dragging
     CGPoint translation = [sender translationInView:self.view];
@@ -338,7 +317,7 @@ GLfloat gCubeVertexData[216] =
     [sender setTranslation:CGPointMake(0, 0) inView:self.view];
 }
 
-- (void)didCameraViewTapped:(UITapGestureRecognizer*) sender
+- (void)didCameraViewTapped:(UITapGestureRecognizer*)sender
 {
     // Load the chat view if we have a chat URL
     if(!self.chatView && self.chatURL)
@@ -351,7 +330,7 @@ GLfloat gCubeVertexData[216] =
                                                                     parentSize.height - ypos)];
         NSURLRequest* request = [NSURLRequest requestWithURL:self.chatURL];
         [self.chatView loadRequest:request];
-        [self.chatView setBackgroundColor:[UIColor clearColor]];
+        [self.chatView setBackgroundColor:[UIColor grayColor]];
         [self.chatView setOpaque:NO];
         [self.view addSubview:self.chatView];
     }

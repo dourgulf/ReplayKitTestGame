@@ -22,46 +22,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lm8-dC-WmW">
-                                <rect key="frame" x="16" y="599" width="343" height="60"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYu-Wv-5mI">
-                                        <rect key="frame" x="8" y="0.0" width="60" height="60"/>
-                                        <state key="normal" image="living_off"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZV-Dp-qZL">
-                                        <rect key="frame" x="76" y="0.0" width="60" height="60"/>
-                                        <state key="normal" image="pause_live"/>
-                                    </button>
-                                </subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTl-Ja-XSC" customClass="RPLiveCtrlView">
+                                <rect key="frame" x="16" y="587" width="60" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="fYu-Wv-5mI" firstAttribute="centerY" secondItem="Lm8-dC-WmW" secondAttribute="centerY" id="PYf-QV-MHC"/>
-                                    <constraint firstAttribute="height" constant="60" id="RVM-08-h2I"/>
-                                    <constraint firstItem="KZV-Dp-qZL" firstAttribute="leading" secondItem="fYu-Wv-5mI" secondAttribute="trailing" constant="8" id="Wr2-jf-m1l"/>
-                                    <constraint firstItem="fYu-Wv-5mI" firstAttribute="leading" secondItem="Lm8-dC-WmW" secondAttribute="leading" constant="8" id="bJN-Vn-SS4"/>
-                                    <constraint firstItem="KZV-Dp-qZL" firstAttribute="centerY" secondItem="fYu-Wv-5mI" secondAttribute="centerY" id="l16-yX-hKT"/>
+                                    <constraint firstAttribute="width" constant="60" placeholder="YES" id="IX2-xT-iN7"/>
+                                    <constraint firstAttribute="height" constant="60" id="TvI-Gr-h61"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="Lm8-dC-WmW" secondAttribute="bottom" constant="8" id="Ot2-f2-DLk"/>
-                            <constraint firstItem="Lm8-dC-WmW" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leadingMargin" id="WPi-UM-tRG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Lm8-dC-WmW" secondAttribute="trailing" id="cTC-Bv-kYA"/>
+                            <constraint firstAttribute="bottom" secondItem="QTl-Ja-XSC" secondAttribute="bottom" constant="20" symbolic="YES" id="kX6-ZE-SQ4"/>
+                            <constraint firstItem="QTl-Ja-XSC" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leadingMargin" id="vDp-Z7-bn7"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="liveButton" destination="fYu-Wv-5mI" id="Q53-Gc-LLH"/>
-                        <outlet property="livePauseButton" destination="KZV-Dp-qZL" id="7Kw-Lz-t4g"/>
+                        <outlet property="liveVMController" destination="QTl-Ja-XSC" id="qa5-4W-c1Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-84" y="-182"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="living_off" width="60" height="60"/>
-        <image name="pause_live" width="60" height="60"/>
-    </resources>
 </document>
