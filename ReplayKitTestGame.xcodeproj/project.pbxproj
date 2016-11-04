@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		944DFA4D3C83E8A449385B77 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E067AC340B3AA54AE216B04 /* libPods.a */; };
+		D07255431DC8391100866581 /* ReplayKitTestGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D07255421DC8391100866581 /* ReplayKitTestGameTests.m */; };
+		D07255511DC8391900866581 /* ReplayKitTestGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D07255501DC8391900866581 /* ReplayKitTestGameUITests.m */; };
 		D08748F61DC08234006C407C /* RPLive.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D08748F51DC08234006C407C /* RPLive.xcassets */; };
 		D08748FB1DC08926006C407C /* ImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D08748FA1DC08926006C407C /* ImageLoader.m */; };
 		D67E744A1DB77E7200FB6398 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D67E74491DB77E7200FB6398 /* main.m */; };
@@ -22,12 +23,36 @@
 		D67E74721DB77F4B00FB6398 /* YYTextWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D67E746B1DB77F4B00FB6398 /* YYTextWeakProxy.m */; };
 		D67E74731DB77F4B00FB6398 /* RPLiveCtrlView.m in Sources */ = {isa = PBXBuildFile; fileRef = D67E746E1DB77F4B00FB6398 /* RPLiveCtrlView.m */; };
 		D67E74741DB77F4B00FB6398 /* RPLiveVM.m in Sources */ = {isa = PBXBuildFile; fileRef = D67E74701DB77F4B00FB6398 /* RPLiveVM.m */; };
+		E6C5A1D7AE5A598E5F5A1153 /* Pods_ReplayKitTestGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC1C19115D8CC03339A0044 /* Pods_ReplayKitTestGame.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D07255451DC8391100866581 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D67E743D1DB77E7200FB6398 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D67E74441DB77E7200FB6398;
+			remoteInfo = ReplayKitTestGame;
+		};
+		D07255531DC8391900866581 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D67E743D1DB77E7200FB6398 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D67E74441DB77E7200FB6398;
+			remoteInfo = ReplayKitTestGame;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		2B996BB8B7AFD1912FDBE412 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		2E067AC340B3AA54AE216B04 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6C709783012D18E6436C3E1A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		496457F8B66BD122CE1EC8C6 /* Pods-ReplayKitTestGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReplayKitTestGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReplayKitTestGame/Pods-ReplayKitTestGame.release.xcconfig"; sourceTree = "<group>"; };
+		70BB38B4613FCF41C765564C /* Pods-ReplayKitTestGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReplayKitTestGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReplayKitTestGame/Pods-ReplayKitTestGame.debug.xcconfig"; sourceTree = "<group>"; };
+		AAC1C19115D8CC03339A0044 /* Pods_ReplayKitTestGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReplayKitTestGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D07255401DC8391100866581 /* ReplayKitTestGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReplayKitTestGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D07255421DC8391100866581 /* ReplayKitTestGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplayKitTestGameTests.m; sourceTree = "<group>"; };
+		D07255441DC8391100866581 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D072554E1DC8391900866581 /* ReplayKitTestGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReplayKitTestGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D07255501DC8391900866581 /* ReplayKitTestGameUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplayKitTestGameUITests.m; sourceTree = "<group>"; };
+		D07255521DC8391900866581 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D08748F51DC08234006C407C /* RPLive.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = RPLive.xcassets; sourceTree = "<group>"; };
 		D08748F91DC08926006C407C /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
 		D08748FA1DC08926006C407C /* ImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLoader.m; sourceTree = "<group>"; };
@@ -54,32 +79,64 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D072553D1DC8391100866581 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D072554B1DC8391900866581 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D67E74421DB77E7200FB6398 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				944DFA4D3C83E8A449385B77 /* libPods.a in Frameworks */,
+				E6C5A1D7AE5A598E5F5A1153 /* Pods_ReplayKitTestGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		38C014DD04A6ABDB902E21D2 /* Frameworks */ = {
+		4D346C9FC7B17962654ECDD0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2E067AC340B3AA54AE216B04 /* libPods.a */,
+				70BB38B4613FCF41C765564C /* Pods-ReplayKitTestGame.debug.xcconfig */,
+				496457F8B66BD122CE1EC8C6 /* Pods-ReplayKitTestGame.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B617C0F1D53352AE8689583E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AAC1C19115D8CC03339A0044 /* Pods_ReplayKitTestGame.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4B5E8F7E85085B8A628A853D /* Pods */ = {
+		D07255411DC8391100866581 /* ReplayKitTestGameTests */ = {
 			isa = PBXGroup;
 			children = (
-				6C709783012D18E6436C3E1A /* Pods.debug.xcconfig */,
-				2B996BB8B7AFD1912FDBE412 /* Pods.release.xcconfig */,
+				D07255421DC8391100866581 /* ReplayKitTestGameTests.m */,
+				D07255441DC8391100866581 /* Info.plist */,
 			);
-			name = Pods;
+			path = ReplayKitTestGameTests;
+			sourceTree = "<group>";
+		};
+		D072554F1DC8391900866581 /* ReplayKitTestGameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D07255501DC8391900866581 /* ReplayKitTestGameUITests.m */,
+				D07255521DC8391900866581 /* Info.plist */,
+			);
+			path = ReplayKitTestGameUITests;
 			sourceTree = "<group>";
 		};
 		D08748F81DC08914006C407C /* ImageLoader */ = {
@@ -95,9 +152,11 @@
 			isa = PBXGroup;
 			children = (
 				D67E74471DB77E7200FB6398 /* ReplayKitTestGame */,
+				D07255411DC8391100866581 /* ReplayKitTestGameTests */,
+				D072554F1DC8391900866581 /* ReplayKitTestGameUITests */,
 				D67E74461DB77E7200FB6398 /* Products */,
-				4B5E8F7E85085B8A628A853D /* Pods */,
-				38C014DD04A6ABDB902E21D2 /* Frameworks */,
+				4D346C9FC7B17962654ECDD0 /* Pods */,
+				B617C0F1D53352AE8689583E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				D67E74451DB77E7200FB6398 /* ReplayKitTestGame.app */,
+				D07255401DC8391100866581 /* ReplayKitTestGameTests.xctest */,
+				D072554E1DC8391900866581 /* ReplayKitTestGameUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,16 +225,52 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D072553F1DC8391100866581 /* ReplayKitTestGameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D07255491DC8391100866581 /* Build configuration list for PBXNativeTarget "ReplayKitTestGameTests" */;
+			buildPhases = (
+				D072553C1DC8391100866581 /* Sources */,
+				D072553D1DC8391100866581 /* Frameworks */,
+				D072553E1DC8391100866581 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D07255461DC8391100866581 /* PBXTargetDependency */,
+			);
+			name = ReplayKitTestGameTests;
+			productName = ReplayKitTestGameTests;
+			productReference = D07255401DC8391100866581 /* ReplayKitTestGameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D072554D1DC8391900866581 /* ReplayKitTestGameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D07255551DC8391900866581 /* Build configuration list for PBXNativeTarget "ReplayKitTestGameUITests" */;
+			buildPhases = (
+				D072554A1DC8391900866581 /* Sources */,
+				D072554B1DC8391900866581 /* Frameworks */,
+				D072554C1DC8391900866581 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D07255541DC8391900866581 /* PBXTargetDependency */,
+			);
+			name = ReplayKitTestGameUITests;
+			productName = ReplayKitTestGameUITests;
+			productReference = D072554E1DC8391900866581 /* ReplayKitTestGameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		D67E74441DB77E7200FB6398 /* ReplayKitTestGame */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D67E74601DB77E7200FB6398 /* Build configuration list for PBXNativeTarget "ReplayKitTestGame" */;
 			buildPhases = (
-				79D6C88FB5A15D54EB24E2FE /* Check Pods Manifest.lock */,
+				8D8AF820D0B57987F2B09E6E /* [CP] Check Pods Manifest.lock */,
 				D67E74411DB77E7200FB6398 /* Sources */,
 				D67E74421DB77E7200FB6398 /* Frameworks */,
 				D67E74431DB77E7200FB6398 /* Resources */,
-				8440F3242535E24022E2E309 /* Embed Pods Frameworks */,
-				B5E1012D9FEA4A807F002A39 /* Copy Pods Resources */,
+				5498EF01FE0E8830CADB1681 /* [CP] Embed Pods Frameworks */,
+				E4058D19E620548C57B1B8A9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +290,18 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = JCLive;
 				TargetAttributes = {
+					D072553F1DC8391100866581 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = CM2364627B;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D67E74441DB77E7200FB6398;
+					};
+					D072554D1DC8391900866581 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = CM2364627B;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D67E74441DB77E7200FB6398;
+					};
 					D67E74441DB77E7200FB6398 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 9CSZNY8EBK;
@@ -214,11 +323,27 @@
 			projectRoot = "";
 			targets = (
 				D67E74441DB77E7200FB6398 /* ReplayKitTestGame */,
+				D072553F1DC8391100866581 /* ReplayKitTestGameTests */,
+				D072554D1DC8391900866581 /* ReplayKitTestGameUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D072553E1DC8391100866581 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D072554C1DC8391900866581 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D67E74431DB77E7200FB6398 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -235,54 +360,70 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		79D6C88FB5A15D54EB24E2FE /* Check Pods Manifest.lock */ = {
+		5498EF01FE0E8830CADB1681 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReplayKitTestGame/Pods-ReplayKitTestGame-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8440F3242535E24022E2E309 /* Embed Pods Frameworks */ = {
+		8D8AF820D0B57987F2B09E6E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B5E1012D9FEA4A807F002A39 /* Copy Pods Resources */ = {
+		E4058D19E620548C57B1B8A9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReplayKitTestGame/Pods-ReplayKitTestGame-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D072553C1DC8391100866581 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D07255431DC8391100866581 /* ReplayKitTestGameTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D072554A1DC8391900866581 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D07255511DC8391900866581 /* ReplayKitTestGameUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D67E74411DB77E7200FB6398 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -299,6 +440,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D07255461DC8391100866581 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D67E74441DB77E7200FB6398 /* ReplayKitTestGame */;
+			targetProxy = D07255451DC8391100866581 /* PBXContainerItemProxy */;
+		};
+		D07255541DC8391900866581 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D67E74441DB77E7200FB6398 /* ReplayKitTestGame */;
+			targetProxy = D07255531DC8391900866581 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D67E74551DB77E7200FB6398 /* Main.storyboard */ = {
@@ -320,6 +474,58 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D07255471DC8391100866581 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = CM2364627B;
+				INFOPLIST_FILE = ReplayKitTestGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = top.dawenhing.ReplayKitTestGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReplayKitTestGame.app/ReplayKitTestGame";
+			};
+			name = Debug;
+		};
+		D07255481DC8391100866581 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = CM2364627B;
+				INFOPLIST_FILE = ReplayKitTestGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = top.dawenhing.ReplayKitTestGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReplayKitTestGame.app/ReplayKitTestGame";
+			};
+			name = Release;
+		};
+		D07255561DC8391900866581 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = CM2364627B;
+				INFOPLIST_FILE = ReplayKitTestGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = top.dawenhing.ReplayKitTestGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4951c91f-788f-4740-aa5b-60a3fcae505b";
+				TEST_TARGET_NAME = ReplayKitTestGame;
+			};
+			name = Debug;
+		};
+		D07255571DC8391900866581 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = CM2364627B;
+				INFOPLIST_FILE = ReplayKitTestGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = top.dawenhing.ReplayKitTestGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4951c91f-788f-4740-aa5b-60a3fcae505b";
+				TEST_TARGET_NAME = ReplayKitTestGame;
+			};
+			name = Release;
+		};
 		D67E745E1DB77E7200FB6398 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -412,14 +618,14 @@
 		};
 		D67E74611DB77E7200FB6398 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C709783012D18E6436C3E1A /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 70BB38B4613FCF41C765564C /* Pods-ReplayKitTestGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9CSZNY8EBK;
 				INFOPLIST_FILE = ReplayKitTestGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tv.inhand.ReplayKitTestGame;
+				PRODUCT_BUNDLE_IDENTIFIER = top.dawenhing.repkaykitsdk.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4951c91f-788f-4740-aa5b-60a3fcae505b";
 				PROVISIONING_PROFILE_SPECIFIER = weile_dev_all;
@@ -428,14 +634,14 @@
 		};
 		D67E74621DB77E7200FB6398 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B996BB8B7AFD1912FDBE412 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 496457F8B66BD122CE1EC8C6 /* Pods-ReplayKitTestGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9CSZNY8EBK;
 				INFOPLIST_FILE = ReplayKitTestGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tv.inhand.ReplayKitTestGame;
+				PRODUCT_BUNDLE_IDENTIFIER = top.dawenhing.repkaykitsdk.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4951c91f-788f-4740-aa5b-60a3fcae505b";
 				PROVISIONING_PROFILE_SPECIFIER = weile_dev_all;
@@ -445,6 +651,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D07255491DC8391100866581 /* Build configuration list for PBXNativeTarget "ReplayKitTestGameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D07255471DC8391100866581 /* Debug */,
+				D07255481DC8391100866581 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D07255551DC8391900866581 /* Build configuration list for PBXNativeTarget "ReplayKitTestGameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D07255561DC8391900866581 /* Debug */,
+				D07255571DC8391900866581 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D67E74401DB77E7200FB6398 /* Build configuration list for PBXProject "ReplayKitTestGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -24,8 +24,8 @@
 
 // start前可以设置的属性
 @property (weak, nonatomic) id<RPLiveVMDelegate> delegate;                          // 代理方法
-@property (assign, nonatomic, getter=isCameraEnabled) BOOL cameraEnabled;           // 开启摄像头(内部自动提示获取权限)
-@property (assign, nonatomic, getter=isMicrophoneEnabled) BOOL microphoneEnabled;   // 开启麦克风(内部自动提示获取权限)
+@property (assign, nonatomic, getter=isCameraEnabled) BOOL cameraEnabled;           // 开启摄像头(内部自动提示获取权限)，同时反映权限状态，支持KVO
+@property (assign, nonatomic, getter=isMicrophoneEnabled) BOOL microphoneEnabled;   // 开启麦克风(内部自动提示获取权限)，同时反映权限状态，支持KVO
 
 // start之后可以访问的属性、可以监听的状态变化
 @property (readonly, weak, nonatomic) UIView *cameraPreview;            // 摄像头的预览画面

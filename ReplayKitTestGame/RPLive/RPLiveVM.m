@@ -59,18 +59,20 @@
 - (void)setCameraEnabled:(BOOL)enable {
     if (enable) {
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            [self willChangeValueForKey:@"cameraEnabled"];
             if (granted) {
-                [self willChangeValueForKey:@"cameraEnabled"];
                 [RPScreenRecorder sharedRecorder].cameraEnabled = YES;
-                [self didChangeValueForKey:@"cameraEnabled"];
             }
             else {
                 NSLog(@"User not allow camera access");
             }
+            [self didChangeValueForKey:@"cameraEnabled"];
         }];
     }
     else {
+        [self willChangeValueForKey:@"cameraEnabled"];
         [RPScreenRecorder sharedRecorder].cameraEnabled = NO;
+        [self didChangeValueForKey:@"cameraEnabled"];
     }
 }
 
@@ -85,16 +87,20 @@
 - (void)setMicrophoneEnabled:(BOOL)enable {
     if (enable) {
         [[AVAudioSession sharedInstance] requestRecordPermission: ^(BOOL granted){
+            [self willChangeValueForKey:@"microphoneEnabled"];
             if (granted) {
                 [RPScreenRecorder sharedRecorder].microphoneEnabled = YES;
             }
             else {
                 NSLog(@"User not allow microphone access");
             }
+            [self didChangeValueForKey:@"microphoneEnabled"];
         }];
     }
     else {
+        [self willChangeValueForKey:@"microphoneEnabled"];
         [RPScreenRecorder sharedRecorder].microphoneEnabled = NO;
+        [self didChangeValueForKey:@"microphoneEnabled"];
     }
 }
 

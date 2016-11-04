@@ -113,11 +113,11 @@
     
     [[self.liveButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self);
-//        if (!self.liveVM.isLiving) {
-//            [self.liveButton setImage:[ImageLoader imageNamed:@"live_on"] forState:UIControlStateNormal];
-//            [self.liveVM start];
-//        }
-//        else {
+        if (!self.liveVM.isLiving) {
+            [self.liveButton setImage:[ImageLoader imageNamed:@"live_on"] forState:UIControlStateNormal];
+            [self.liveVM start];
+        }
+        else {
             [self.stopButton setImage:[ImageLoader imageNamed:@"stop"] forState:UIControlStateNormal];
             if (self.menuOpen) {
                 [self setupCloseMenu];
@@ -125,12 +125,12 @@
             else {
                 [self setupOpenMenu];
             }
-//        }
+        }
     }];
     
     [[RACObserve(self.liveVM, paused) deliverOnMainThread] subscribeNext:^(id x) {
         @strongify(self);
-        if (self.liveVM.paused) {
+        if (self.liveVM.isPaused) {
             [self.pauseButton setImage:[ImageLoader imageNamed:@"resume"] forState:UIControlStateNormal];
         }
         else {
@@ -201,6 +201,7 @@
     }];
 }
 
+// 为了支持方向，代码搞复杂了：（
 - (void)setupMenus:(NSArray<UIView *>*)menus {
     UIView *firstView = menus.firstObject;
     if (!firstView) {
@@ -320,7 +321,5 @@
         }
     }];
 }
-
-
 
 @end
